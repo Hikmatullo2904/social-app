@@ -11,12 +11,14 @@
         <module name="post-service" />
         <module name="user-service" />
         <module name="gateway-service" />
+        <module name="interaction-service" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="gateway-service" options="-parameters" />
+      <module name="interaction-service" options="-parameters" />
       <module name="post-service" options="-parameters" />
       <module name="registry" options="-parameters" />
       <module name="user-service" options="-parameters" />

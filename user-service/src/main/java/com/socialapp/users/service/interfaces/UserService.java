@@ -8,8 +8,8 @@ import java.util.List;
 
 public interface UserService {
 
-    ApiResponse saveUser(UserCreateDto userDto);
-    List<UserDto> getUserFollowers(Long userId);
-    List<UserDto> getUserFollowing(Long userId);
+    ApiResponse<UserDto> saveUser(UserCreateDto userDto);
+    ApiResponse<List<UserDto>> getUserFollowers(Long userId);
+    ApiResponse<List<UserDto>> getUserFollowing(Long userId);
 
 }

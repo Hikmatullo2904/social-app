@@ -6,10 +6,12 @@ import com.socialapp.postservice.payload.ApiResponse;
 import java.util.List;
 
 public interface PostService {
-    PostDto savePost(PostDto postDto);
+    ApiResponse<PostDto> savePost(PostDto postDto);
 
-    PostDto getPostById(Long id);
+    ApiResponse<PostDto> getPost(Long id);
 
-    ApiResponse deletePostById(Long id);
-    List<PostDto> getFollowingPosts(Long userId);
+    ApiResponse<Void> deletePost(Long id);
+    ApiResponse<List<PostDto>> getFollowingPosts(List<Long> userIds);
+
+    ApiResponse<List<PostDto>> getUserPosts(Long id);
 }

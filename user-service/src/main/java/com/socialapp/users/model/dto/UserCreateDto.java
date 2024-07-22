@@ -11,10 +11,8 @@ import lombok.Setter;
 @NoArgsConstructor
 public class UserCreateDto {
     private Long id;
-    private String firstname;
-    private String lastname;
+    private String fullName;
     private String email;
-    private String bio;
-    private String image;
+    private Long imageId;
     private String password;
 }

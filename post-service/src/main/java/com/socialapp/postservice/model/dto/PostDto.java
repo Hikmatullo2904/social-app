@@ -1,17 +1,15 @@
 package com.socialapp.postservice.model.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
+@Builder
 public class PostDto {
     private Long id;
-    private String text;
-    private String image;
+    private String description;
+    private Long imageId;
     private Long userId;
 }

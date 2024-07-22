@@ -18,21 +18,21 @@ public class UserController {
     private final FollowService followService;
 
     @GetMapping("/followers/{id}")
-    public List<UserDto> getFollowers(@PathVariable Long id) {
+    public ApiResponse<List<UserDto>> getFollowers(@PathVariable Long id) {
         return userService.getUserFollowers(id);
     }
     @GetMapping("/followings/{id}")
-    public List<UserDto> getFollowings(@PathVariable Long id) {
+    public ApiResponse<List<UserDto>> getFollowings(@PathVariable Long id) {
         return userService.getUserFollowing(id);
     }
 
     @PostMapping
-    public ApiResponse saveUser(@RequestBody UserCreateDto userDto) {
+    public ApiResponse<UserDto> saveUser(@RequestBody UserCreateDto userDto) {
         return userService.saveUser(userDto);
     }
 
     @PostMapping("/follow")
-    public ApiResponse follow(@RequestParam Long userId, @RequestParam Long followingId) {
+    public ApiResponse<Void> follow(@RequestParam Long userId, @RequestParam Long followingId) {
         return followService.follow(userId, followingId);
     }
 

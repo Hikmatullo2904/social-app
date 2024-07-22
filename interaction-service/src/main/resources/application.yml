@@ -1,0 +1,20 @@
+spring:
+  application:
+   name: INTERACTION-SERVICE
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/social_app
+    username: postgres
+    password: 1133
+
+server:
+  port: 8083
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://registry:123@localhost:8800/eureka
+  instance:
+    hostname: localhost

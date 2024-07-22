@@ -12,30 +12,23 @@ import org.springframework.stereotype.Service;
 public class FollowServiceImpl implements FollowService {
     private final FollowRepository followRepository;
     @Override
-    public ApiResponse follow(Long userId, Long followingId) {
+    public ApiResponse<Void> follow(Long userId, Long followingId) {
 
         boolean alreadyFollowing = followRepository.existsByFollowerIdAndFollowingId(userId, followingId);
         if(alreadyFollowing) {
-            return new ApiResponse(
-                    false,
-                    "you have already followed",
-                    null
-            );
+            throw new RuntimeException("Already following");
         }
 
         Follow follow = new Follow();
         follow.setFollowerId(userId);
         follow.setFollowingId(followingId);
         followRepository.save(follow);
-        return new ApiResponse(
-                true,
-                "success",
-                null
-        );
+        return new ApiResponse<>().success();
     }
 
     @Override
-    public ApiResponse unfollow(Long userId, Long followingId) {
-        return null;
+    public ApiResponse<Void> unfollow(Long userId, Long followingId) {
+        return new ApiResponse<>().success();
+        // TODO implement
     }
 }

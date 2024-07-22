@@ -19,31 +19,25 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
     @Override
-    public ApiResponse saveUser(UserCreateDto userDto) {
+    public ApiResponse<UserDto> saveUser(UserCreateDto userDto) {
         Optional<User> byEmail = userRepository.findByEmail(userDto.getEmail());
         if(byEmail.isPresent()) {
-            return new ApiResponse(
-                    false,
-                    "user with this email already exsists",
-                    null
-            );
+            throw new RuntimeException("User already exists");
         }
         User user = userRepository.save(userMapper.mapToUser(userDto));
-        return new ApiResponse(
-                true,
-                "saved successfully",
-                userMapper.mapToUserDto(user)
-        );
+        return new ApiResponse<UserDto>().success(userMapper.mapToUserDto(user));
     }
 
     @Override
-    public List<UserDto> getUserFollowers(Long userId) {
-        return userMapper.mapToUserDtoList(userRepository.getUserFollowers(userId));
+    public ApiResponse<List<UserDto>> getUserFollowers(Long userId) {
+        List<UserDto> userDtoList = userMapper.mapToUserDtoList(userRepository.getUserFollowers(userId));
+        return new ApiResponse<List<UserDto>>().success(userDtoList);
     }
 
     @Override
-    public List<UserDto> getUserFollowing(Long userId) {
-        return userMapper.mapToUserDtoList(userRepository.getUserFollowings(userId));
+    public ApiResponse<List<UserDto>> getUserFollowing(Long userId) {
+        List<UserDto> userDtoList = userMapper.mapToUserDtoList(userRepository.getUserFollowings(userId));
+        return new ApiResponse<List<UserDto>>().success(userDtoList);
     }
 
 
