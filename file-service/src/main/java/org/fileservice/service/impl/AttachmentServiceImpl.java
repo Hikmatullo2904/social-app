@@ -56,6 +56,7 @@ public class AttachmentServiceImpl implements AttachmentService {
     @SneakyThrows
     private void uploadToStorage(MultipartFile file, Attachment attachment) {
         Path path = Paths.get(attachment.getUrl());
+
         Files.write(path, file.getBytes());
     }
 
@@ -69,7 +70,7 @@ public class AttachmentServiceImpl implements AttachmentService {
 
         String fileName = UUID.randomUUID() + "." +
                 getExtension(Objects.requireNonNull(file.getOriginalFilename()));
-        attachment.setUrl(BASE_FILE_URL + "\\" + fileName);
+        attachment.setUrl(BASE_FILE_URL + "/pictures/" + fileName);
 
         attachmentRepository.save(attachment);
         return attachment;

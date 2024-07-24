@@ -15,6 +15,10 @@ public class RouteConfig {
                         .uri("lb://USER-SERVICE")
                 ).route("post-service", r -> r.path("/api/posts/**")
                         .uri("lb://POST-SERVICE")
+                ).route("file-service", r -> r.path("/api/files/**")
+                        .uri("lb://FILE-SERVICE")
+                ).route("interaction-service", r -> r.path("/api/interactions/**")
+                        .uri("lb://INTERACTION-SERVICE")
                 )
                 .build();
     }

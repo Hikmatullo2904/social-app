@@ -1,6 +1,13 @@
 spring:
   application:
    name: FILE-SERVICE
+  datasource:
+    url: jdbc:postgresql://localhost:5432/social_app
+    username: postgres
+    password: 1133
+  jpa:
+    hibernate:
+      ddl-auto: update
 server:
   port: 9000
 
@@ -9,6 +16,9 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://localhost:8800/eureka
+      defaultZone: http://registry:123@localhost:8800/eureka
   instance:
     hostname: localhost
+file:
+  base:
+    url: /home/ubuntu/Anvarbekov/learning

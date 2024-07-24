@@ -1,11 +1,13 @@
 spring:
   application:
    name: INTERACTION-SERVICE
-
   datasource:
     url: jdbc:postgresql://localhost:5432/social_app
     username: postgres
     password: 1133
+  jpa:
+    hibernate:
+      ddl-auto: update
 
 server:
   port: 8083

@@ -1,7 +1,6 @@
 package com.socialapp.postservice.controller;
 
 import com.socialapp.postservice.model.dto.PostDto;
-import com.socialapp.postservice.model.entity.Post;
 import com.socialapp.postservice.payload.ApiResponse;
 import com.socialapp.postservice.service.interfaces.PostService;
 import lombok.RequiredArgsConstructor;
@@ -21,9 +20,9 @@ public class PostController {
         return postService.getFollowingPosts(userIds);
     }
 
-    @GetMapping("/user/{id}")
-    public ApiResponse<List<PostDto>> getUserPosts(@PathVariable Long id) {
-        return postService.getUserPosts(id);
+    @GetMapping("/user")
+    public ApiResponse<List<PostDto>> getUserPosts(@RequestParam Long userId) {
+        return postService.getUserPosts(userId);
     }
 
     @GetMapping("/{id}")

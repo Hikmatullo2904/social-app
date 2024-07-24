@@ -7,7 +7,7 @@ import org.interaction.interactionservice.service.interfaces.LikeService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/interaction/likes")
+@RequestMapping("/api/interactions/likes")
 @RequiredArgsConstructor
 public class LikeController {
 
