@@ -1,5 +1,7 @@
 package com.socialapp.postservice.controller;
 
+import com.socialapp.postservice.aop.Authorize;
+import com.socialapp.postservice.enums.RoleEnum;
 import com.socialapp.postservice.model.dto.PostDto;
 import com.socialapp.postservice.payload.ApiResponse;
 import com.socialapp.postservice.service.interfaces.PostService;
@@ -15,11 +17,13 @@ public class PostController {
 
     private final PostService postService;
 
+    @Authorize(roles = {RoleEnum.USER, RoleEnum.ADMIN, RoleEnum.MANAGER})
     @GetMapping("/following")
     public ApiResponse<List<PostDto>> getFollowingPosts(@RequestBody List<Long> userIds) {
         return postService.getFollowingPosts(userIds);
     }
 
+    @Authorize(roles = {RoleEnum.ADMIN, RoleEnum.MANAGER})
     @GetMapping("/user")
     public ApiResponse<List<PostDto>> getUserPosts(@RequestParam Long userId) {
         return postService.getUserPosts(userId);
@@ -31,7 +35,7 @@ public class PostController {
     }
 
     @PostMapping
-    public ApiResponse<PostDto> savePost(@RequestBody PostDto postDto){
+    public ApiResponse<PostDto> savePost(@RequestBody PostDto postDto) {
         return postService.savePost(postDto);
     }
 
